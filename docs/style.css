@@ -29,8 +29,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 120vw;
-    height: 120vw;
+    height: 200vw;
     /* Removed max-width/height to allow full immersion */
     opacity: 0.12;
     filter: blur(100px) saturate(200%);
@@ -64,11 +63,11 @@ h1 {
 }
 
 .logo {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 1rem;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    width: 140px;
+    height: 140px;
+    margin-bottom: 1.5rem;
+    border-radius: 28px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
 }
 
 .subtitle {
