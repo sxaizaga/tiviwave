@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TiviWave Support</title>
+    <meta name="description" content="Support and contact information for the TiviWave application.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌊</text></svg>">
+</head>
+
+<body>
+    <div class="bg-gradient"></div>
+
+    <div class="lang-switch">
+        <button onclick="setLanguage('en')" class="lang-btn" id="btn-en">EN</button>
+        <button onclick="setLanguage('es')" class="lang-btn" id="btn-es">ES</button>
+    </div>
+
+    <div class="container">
+
+        <!-- ENGLISH CONTENT -->
+        <div id="en-content" class="lang-content">
+            <header>
+                <h1>TiviWave</h1>
+                <p class="subtitle">Support &amp; Contact</p>
+            </header>
+
+            <main>
+                <div class="card">
+                    <h2>Contact Information</h2>
+                    <p style="margin-bottom: 2rem; color: #ccc;">
+                        For app issues, general feedback, and feature enhancement requests, please contact us using the
+                        information below.
+                    </p>
+
+                    <div class="contact-item">
+                        <span class="contact-label">Email Support</span>
+                        <div class="contact-value">
+                            <a href="mailto:support@example.com">support@example.com</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <span class="contact-label">Telephone</span>
+                        <div class="contact-value">
+                            +1 (555) 123-4567
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <span class="contact-label">Legal Address</span>
+                        <div class="contact-value">
+                            123 App Developer St.<br>
+                            Tech City, TC 90210<br>
+                            Country
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Privacy Policy</h2>
+                    <div class="contact-value">
+                        <p style="font-size: 1rem; color: #ccc; margin-bottom: 1rem;">
+                            Detailed information about how we handle your data (specifically regarding microphone usage)
+                            can be found in our privacy policy.
+                        </p>
+                        <a href="privacy.html?lang=en">View Privacy Policy &rarr;</a>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- SPANISH CONTENT -->
+        <div id="es-content" class="lang-content">
+            <header>
+                <h1>TiviWave</h1>
+                <p class="subtitle">Soporte y Contacto</p>
+            </header>
+
+            <main>
+                <div class="card">
+                    <h2>Información de Contacto</h2>
+                    <p style="margin-bottom: 2rem; color: #ccc;">
+                        Para problemas con la aplicación, comentarios generales y solicitudes de mejoras, contáctanos
+                        utilizando la información a continuación.
+                    </p>
+
+                    <div class="contact-item">
+                        <span class="contact-label">Soporte por Correo</span>
+                        <div class="contact-value">
+                            <a href="mailto:support@example.com">support@example.com</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <span class="contact-label">Teléfono</span>
+                        <div class="contact-value">
+                            +1 (555) 123-4567
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <span class="contact-label">Dirección Legal</span>
+                        <div class="contact-value">
+                            123 App Developer St.<br>
+                            Tech City, TC 90210<br>
+                            Country
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Política de Privacidad</h2>
+                    <div class="contact-value">
+                        <p style="font-size: 1rem; color: #ccc; margin-bottom: 1rem;">
+                            La información detallada sobre cómo manejamos tus datos (específicamente respecto al uso del
+                            micrófono) se encuentra en nuestra política de privacidad.
+                        </p>
+                        <a href="privacy.html?lang=es">Ver Política de Privacidad &rarr;</a>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <footer>
+            <p>&copy;
+                <script>document.write(new Date().getFullYear())</script> TiviWave.
+                <span id="footer-en" class="lang-text">All rights reserved.</span>
+                <span id="footer-es" class="lang-text" style="display:none">Todos los derechos reservados.</span>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        function setLanguage(lang) {
+            // Update buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + lang).classList.add('active');
+
+            // Update Main Content
+            document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+            document.getElementById(lang + '-content').classList.add('active');
+
+            // Update Footer specific small text (manual toggle for inline)
+            document.getElementById('footer-en').style.display = lang === 'en' ? 'inline' : 'none';
+            document.getElementById('footer-es').style.display = lang === 'es' ? 'inline' : 'none';
+
+            // Save preference
+            localStorage.setItem('tiviwave_lang', lang);
+
+            // Update URL param without reload
+            const url = new URL(window.location);
+            url.searchParams.set('lang', lang);
+            window.history.pushState({}, '', url);
+        }
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const savedLang = localStorage.getItem('tiviwave_lang');
+            const userLang = navigator.language || navigator.userLanguage;
+
+            let lang = 'en';
+            if (urlParams.has('lang')) {
+                lang = urlParams.get('lang');
+            } else if (savedLang) {
+                lang = savedLang;
+            } else if (userLang.startsWith('es')) {
+                lang = 'es';
+            }
+
+            if (lang !== 'en' && lang !== 'es') lang = 'en';
+
+            setLanguage(lang);
+        });
+    </script>
+</body>
+
+</html>
