@@ -44,6 +44,14 @@ h1 {
     margin-bottom: 0.5rem;
 }
 
+.logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
 .subtitle {
     color: #888;
     font-size: 1.25rem;
